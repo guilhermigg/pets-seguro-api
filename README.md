@@ -1,6 +1,17 @@
 # Pets Seguro API
 Uma API desenvolvida para o teste técnico da MeuPetClube
 
+## Tecnologias
+- Backend
+  - NestJS
+- Banco de dados
+  - MongoDB
+  - Prisma
+- Testes
+  - Jest
+- Infraestrutura
+  - Docker
+
 ## Roadmap
 
 ### Essenciais 
