@@ -1,0 +1,15 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Planos {
+  id         String    @id @map("_id") // Defina o tipo de id como String e renomeie para "_id" no MongoDB
+  beneficios String[]
+  preco      Float
+
+}
