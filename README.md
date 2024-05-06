@@ -1,5 +1,12 @@
 # Pets Seguro API
-Uma API desenvolvida para o teste técnico da MeuPetClube
+
+<div align="center">
+
+Uma API desenvolvida para o teste técnico da MeuPetClub
+
+![Logotipo do MeuPetClub](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEh74naIH8AqdrrGzJrvereEDsxE3zyDCYz2GYcqkoxg&s) 
+
+</div>
 
 ## Tecnologias
 - Backend
