@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Planos {
-  id         String    @id @map("_id") // Defina o tipo de id como String e renomeie para "_id" no MongoDB
+  id         String    @id @map("_id") 
   beneficios String[]
   preco      Float
 
