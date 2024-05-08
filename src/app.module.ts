@@ -6,6 +6,7 @@ import { PrismaUserRepository } from './repositories/prisma/prisma_user_reposito
 import { UserController } from './controllers/user.controller';
 import { BCryptService } from './auth/bcrypt.service';
 import { AuthService } from "./auth//auth.service";
+import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './controllers/auth.controller';
 
 import * as dotenv from 'dotenv';
@@ -13,9 +14,10 @@ dotenv.config();
 
 @Module({
   imports: [
+    PassportModule,
     JwtModule.register({
         secret: process.env.JWT_SECRET,
-        signOptions: {expiresIn: '7d'}
+        signOptions: {expiresIn: '2h'}
     })
   ],
   controllers: [

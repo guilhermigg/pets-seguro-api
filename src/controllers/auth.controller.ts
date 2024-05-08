@@ -15,13 +15,8 @@ export class AuthController {
 
     @Post('login')
     async login(@Body() body: AuthDTO): Promise<string> {
-        const token = await this.authService.validateUser(body);
+        const token = await this.authService.validateUserLogin(body);
         if(!token) throw new HttpException('Credenciais inválidas', 401);
         return token
-    }
-
-    @Post('logout')
-    async logout(@Param(':id') id : string) : Promise<void> {
-        await this.userRepository.delete(id);
     }
 }

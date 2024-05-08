@@ -12,13 +12,13 @@ export class AuthService {
         private jwtService: JwtService
     ) {}
 
-    async validateUser(authPayload : AuthDTO) : Promise<string> {
+    async validateUserLogin(authPayload : AuthDTO) : Promise<string> {
         const user = await this.userRepository.get(authPayload.email);
         if(!user) return null
 
         const match = await this.bcryptService.comparePassword(authPayload.password, user.password);
         if(!match) return null
         
-        return this.jwtService.sign(user);
+        return await this.jwtService.signAsync(user);
     }
 }

@@ -12,7 +12,7 @@ async function bootstrap() {
     .setTitle('Pets Seguro API')
     .setDescription('API de gerenciamento de seguros de saúde para pets ;)')
     .setVersion('1.0')
-    .addTag('users')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
