@@ -8,6 +8,12 @@ import { BCryptService } from './auth/bcrypt.service';
 import { AuthService } from "./auth//auth.service";
 import { PassportModule } from '@nestjs/passport';
 import { AuthController } from './controllers/auth.controller';
+import { PetController } from './controllers/pet.controller';
+import { PetRepository } from './repositories/pet_repository';
+import { PrismaPetRepository } from './repositories/prisma/prisma_pet_repository';
+import { PlanRepository } from './repositories/plan_repository';
+import { PrismaPlanRepository } from './repositories/prisma/prisma_plan_repository';
+import { PlanController } from './controllers/plan.controller';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -21,8 +27,10 @@ dotenv.config();
     })
   ],
   controllers: [
+    AuthController,
     UserController,
-    AuthController
+    PetController,
+    PlanController
   ],
   providers: [
     PrismaService,
@@ -31,6 +39,14 @@ dotenv.config();
     {
       provide: UserRepository,
       useClass: PrismaUserRepository
+    },
+    {
+      provide: PetRepository,
+      useClass: PrismaPetRepository
+    },
+    {
+      provide: PlanRepository,
+      useClass: PrismaPlanRepository
     }
   ],
 })
