@@ -32,14 +32,18 @@ export class PrismaUserRepository implements UserRepository {
     }
 
     async list() : Promise<UserDTO[]> {
-        return [new UserDTO];
+        const users : UserDTO[] = await this.prisma.user.findMany({where: {active: true}});
+        return users;
     }
 
-    async update(UserDTO: UserDTO) : Promise<void> {
-        return;
+    async update(user: UserDTO) : Promise<void> {
+        await this.prisma.user.update({
+            where: {id: user.id},
+            data: user
+        })
     }
 
     async delete(id: string) : Promise<void> {
-        return;
+        await this.prisma.user.delete({where: {id: id}});
     }
 }
