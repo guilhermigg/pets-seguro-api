@@ -7,9 +7,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Planos {
-  id         String    @id @map("_id") 
-  beneficios String[]
-  preco      Float
+model User {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  email       String
+  password    String
+  active      Boolean?  @default(true)
+  role        user_role
+  pets        Pet[]
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @default(now())
+  
+  @@map("users")
+}
 
+model Plan {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  benefits    String[]
+  price       Float
+  created_at  DateTime @default(now())
+  pets        Pet[]
+
+  @@map("plans")
+}
+
+model Pet {
+  id  String    @id @default(auto()) @map("_id") @db.ObjectId
+  name String
+  breed String
+  color String
+
+  owner_id String @db.ObjectId
+  owner User @relation(fields: [owner_id], references: [id]) 
+
+  plan_id String @db.ObjectId
+  plan Plan @relation(fields: [plan_id], references: [id])
+
+  @@map("pets")
+}
+
+enum user_role {
+  CUSTOMER
+  ADMIN
 }
