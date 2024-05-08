@@ -1,15 +1,12 @@
-
-import { Body, Param, Controller, Post, Get, Delete, Put, HttpException } from "@nestjs/common";
+import { Body, Controller, Post, HttpException } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { AuthService } from "src/auth/auth.service";
 import { AuthDTO } from "src/dto/auth.dto";
-import { UserRepository } from "src/repositories/user_repository";
 
 @Controller('auth')
 @ApiTags('auth')
 export class AuthController {
     constructor(
-        private userRepository : UserRepository,
         private authService : AuthService
     ) {}
 

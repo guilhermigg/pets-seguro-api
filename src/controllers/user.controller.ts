@@ -22,12 +22,14 @@ export class UserController {
         return user;
     }
 
+    @UseGuards(AuthGuard)
     @Get()
     async listUsers() : Promise<UserDTO[]> {
         const users = await this.userRepository.list();
         return users;
     }
 
+    @UseGuards(AuthGuard)
     @Delete(':id')
     async deleteUser(@Param(':id') id : string) : Promise<void> {
         await this.userRepository.delete(id);
