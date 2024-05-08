@@ -1,35 +1,13 @@
-
 services:
-  pets-mongodb:
-    image: mongo:latest
-    container_name: pets-mongodb
-    restart: always
-    command: --auth
-    environment:
-      - MONGO_INITDB_DATABASE=pets-db
-      - MONGO_INITDB_ROOT_USERNAME=${MONGODB_ROOT_USER}
-      - MONGO_INITDB_ROOT_PASSWORD=${MONGODB_ROOT_PASSWORD}
-    ports:
-      - "27017:27017"
-    volumes:
-      - ./docker-entrypoint/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-      - mongodb_data:/data/db
-
   pets-app:
-    build: ./
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: pets-app
     volumes:
       - .:/app
     restart: always
     ports:
       - "3000:3000"
-    depends_on:
-      - pets-mongodb
-    logging:
-      driver: "json-file"
-      options: 
-        max-size: "10m"
-        max-file: "5"
-
-volumes:
-  mongodb_data:
+    environment:
+      - NODE_ENV=development
