@@ -33,16 +33,16 @@ model Plan {
 }
 
 model Pet {
-  id  String    @id @default(auto()) @map("_id") @db.ObjectId
-  name String
-  breed String
-  color String
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  breed       String
+  type        pet_type?
 
-  owner_id String @db.ObjectId
-  owner User @relation(fields: [owner_id], references: [id]) 
+  owner_id    String @db.ObjectId
+  owner User  @relation(fields: [owner_id], references: [id]) 
 
-  plan_id String @db.ObjectId
-  plan Plan @relation(fields: [plan_id], references: [id])
+  plan_id     String? @db.ObjectId
+  plan Plan?  @relation(fields: [plan_id], references: [id])
 
   @@map("pets")
 }
@@ -50,4 +50,9 @@ model Pet {
 enum user_role {
   CUSTOMER
   ADMIN
+}
+
+enum pet_type {
+  DOG
+  CAT
 }
